@@ -2,6 +2,7 @@
 let scores = [0, 0];            // scores is the array of two elements to store
 let roundScore = 0;         //roundScore is a temporary variable that holds the score for a while p=> CURRENT
 let activePlayer = 0;           //activeplayer is a variable that indicates whose turn is there P=> unvisible element but important
+let diceDom = document.querySelector('.dice');  
 
 document.querySelector('.dice').style.display = 'none';        // none qilib olib boshlang'ich q holatda dice image ni ko'rinmaydigan qilib olamiz
 
@@ -15,7 +16,7 @@ document.querySelector('.btn--roll').addEventListener('click', function(){
     let dice = Math.floor(Math.random()*6 + 1);
     
     //2 Display the result diceDom => img
-    let diceDom = document.querySelector('.dice');      
+    // let diceDom = document.querySelector('.dice');      
     diceDom.style.display = 'block ';       // block qilib olib random tushgan raqamni dice image ga oladigan qilamiz va u window da korinadi
 
     // diceDom.setAttribute('src', 'dice-' + dice+'.png')
@@ -37,6 +38,29 @@ document.querySelector('.btn--roll').addEventListener('click', function(){
         document.querySelector('.player--0').classList.toggle('player--active');
         diceDom.style.display = 'none';
     }
+});
+document.querySelector('.btn--hold').addEventListener("click", function(){
+    
+    //Add current score to Global score
+    scores[activePlayer] += roundScore;         //score array iga activePlayer=0 bolsa shu index elementiga roundScore dagi qiymatni qoshib qo'yadi
+
+    //Update the UI (user interface)
+    document.querySelector('#score--' + activePlayer).textContent = scores[activePlayer];
+    
+    activePlayer === 0 ? activePlayer = 1 : activePlayer = 0; 
+        roundScore = 0;
+        document.getElementById("current--"+activePlayer).textContent = roundScore;
+        document.getElementById('current--1').textContent = 0;
+        document.getElementById('current--0').textContent = 0;
+        
+        document.querySelector('.player--1').classList.toggle('player--active');
+        document.querySelector('.player--0').classList.toggle('player--active');
+        diceDom.style.display = "none";
+
+
+    //Check if the player won the game
+
+
 });
 
 
