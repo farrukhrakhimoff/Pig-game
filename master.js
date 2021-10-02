@@ -9,7 +9,6 @@ document.querySelector('.btn--roll').addEventListener('click', function(){
         count=0;
         dice= Math.floor(Math.random()*6+1);   
         
-
         diceDOM.style.display='block';              
         diceDOM.src='dice-'+dice+'.png';                
 
@@ -19,8 +18,8 @@ document.querySelector('.btn--roll').addEventListener('click', function(){
             console.log(document.getElementById('score--'+activePlayer).textContent);
             nextPlayer();
         }
-
-       else if (dice!==1){          
+        
+        if (dice!==1){          
             roundScores+=dice;
              document.querySelector('#current--'+ activePlayer).textContent=roundScores;
            
